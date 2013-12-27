@@ -1,6 +1,7 @@
 Build.PL
 Changes
 lib/WebService/Cryptsy.pm
+examples/api.pl
 MANIFEST
 README
 LICENSE

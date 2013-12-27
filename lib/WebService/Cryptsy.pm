@@ -11,7 +11,7 @@ use constant API_POST_URL => 'https://www.cryptsy.com/api';
 use constant API_GET_URL  => 'http://pubapi.cryptsy.com/api.php';
 use overload '""' => sub { shift->error };
 
-our $VERSION = '1.001';
+our $VERSION = '1.002';
 
 
 has public_key  => ( is => 'ro', );
@@ -272,7 +272,7 @@ module will give a confusing error message.>
 
 =head1 CONSTRUCTOR
 
-=head2 C<< ->new >>
+=head2 C<new>
 
     my $cryp = WebService::Cryptsy->new(
         public_key  => 'YOUR PUBLIC  KEY',
@@ -321,7 +321,7 @@ B<Default:> C<60>
 
 =head1 MODULE METHODS / OVERLOADS
 
-=head2 C<< ->error >>
+=head2 C<error>
 
     # these two are equivalent
     my $data = $cryp->marketdata
@@ -337,7 +337,7 @@ using the C<< ->error >> method. This method is overloaded for object
 interpolation, thus you can simply interpolate the object in a string
 to get the error message.
 
-=head2 C<< ->timeout >>
+=head2 C<timeout>
 
     printf "Current API request timeout is %d\n", $cryp->timeout;
 
@@ -358,7 +358,7 @@ takes any arguments, you'd supply them to the method, in the same order
 
 These methods do not require API keys.
 
-=head2 C<< ->marketdata >>
+=head2 C<marketdata>
 
     my $data = $cryp->marketdata
         or die "Error: $cryp";
@@ -406,7 +406,7 @@ On success returns a data structure that looks something like this:
         },
     };
 
-=head2 C<< ->marketdatav2 >>
+=head2 C<marketdatav2>
 
     my $data = $cryp->marketdatav2
         or die "Error: $cryp";
@@ -416,47 +416,46 @@ B<On failure> returns C<undef> or an empty list,
 depending on the context, and sets C<< ->error >> to the error message.
 On success returns a data structure that looks something like this:
 
-{
-    'markets' => {
-        'IFC/LTC' => {
-            'primaryname' => 'InfiniteCoin',
-            'secondaryname' => 'LiteCoin',
-            'label' => 'IFC/LTC',
-            'volume' => '413934622.38106910',
-            'lasttradeprice' => '0.00000289',
-            'marketid' => '60',
-            'primarycode' => 'IFC',
-            'secondarycode' => 'LTC',
-            'lasttradetime' => '2013-12-26 01:37:09',
-            'sellorders' => [
-                {
-                    'quantity' => '0.00000000',
-                    'price' => '0.00000286',
-                    'total' => '8.64783388'
-                },
-            ],
-            'buyorders' => [
-                {
-                    'quantity' => '0.00000000',
-                    'price' => '0.00000293',
-                    'total' => '2.15336758',
-                },
-            ],
-            'recenttrades' => [
-                {
-                    'time' => '2013-12-26 01:40:36',
-                    'quantity' => '10000.00000000',
-                    'price' => '0.00000292',
-                    'id' => '9626105',
-                    'total' => '0.02920000',
-                },
-            ],
-        },
-    }
+    {
+        'markets' => {
+            'IFC/LTC' => {
+                'primaryname' => 'InfiniteCoin',
+                'secondaryname' => 'LiteCoin',
+                'label' => 'IFC/LTC',
+                'volume' => '413934622.38106910',
+                'lasttradeprice' => '0.00000289',
+                'marketid' => '60',
+                'primarycode' => 'IFC',
+                'secondarycode' => 'LTC',
+                'lasttradetime' => '2013-12-26 01:37:09',
+                'sellorders' => [
+                    {
+                        'quantity' => '0.00000000',
+                        'price' => '0.00000286',
+                        'total' => '8.64783388'
+                    },
+                ],
+                'buyorders' => [
+                    {
+                        'quantity' => '0.00000000',
+                        'price' => '0.00000293',
+                        'total' => '2.15336758',
+                    },
+                ],
+                'recenttrades' => [
+                    {
+                        'time' => '2013-12-26 01:40:36',
+                        'quantity' => '10000.00000000',
+                        'price' => '0.00000292',
+                        'id' => '9626105',
+                        'total' => '0.02920000',
+                    },
+                ],
+            },
+        }
+    };
 
-};
-
-=head2 C<< ->singlemarketdata >>
+=head2 C<singlemarketdata>
 
     my $market_id = 60; #  IFC/LTC market
     my $data = $cryp->singlemarketdata( $market_id )
@@ -507,7 +506,7 @@ On success returns a data structure that looks something like this:
         }
     };
 
-=head2 C<< ->orderdata >>
+=head2 C<orderdata>
 
     my $data = $cryp->orderdata
         or die "Error: $cryp";
@@ -543,7 +542,7 @@ On success returns a data structure that looks something like this:
         },
     };
 
-=head2 C<< ->singleorderdata >>
+=head2 C<singleorderdata>
 
     my $market_id = 68; #  CSC/BTC market
     my $data = $cryp->singleorderdata( $market_id )
@@ -582,7 +581,7 @@ On success returns a data structure that looks something like this:
 
 =head1 AUTHENTICATED API METHODS
 
-=head2 C<< ->getinfo >>
+=head2 C<getinfo>
 
     my $data = $cryp->getinfo
         or die "Error: $cryp";
@@ -628,7 +627,7 @@ hold for open orders
 
 =back
 
-=head2 C<< ->getmarkets >>
+=head2 C<getmarkets>
 
     my $data = $cryp->getmarkets
         or die "Error: $cryp";
@@ -688,7 +687,7 @@ C<BitCoin>
 
 =back
 
-=head2 C<< ->mytransactions >>
+=head2 C<mytransactions>
 
     my $data = $cryp->mytransactions
         or die "Error: $cryp";
@@ -729,7 +728,7 @@ or Withdrawal was sent
 
 =back
 
-=head2 C<< ->markettrades >>
+=head2 C<markettrades>
 
     my $market_id = 68; #  CSC/BTC market
     my $data = $cryp->markettrades( $market_id )
@@ -772,7 +771,7 @@ the meaning of the keys in each hashref is:
 
 =back
 
-=head2 C<< ->marketorders >>
+=head2 C<marketorders>
 
     my $market_id = 68; #  CSC/BTC market
     my $data = $cryp->marketorders( $market_id )
@@ -817,7 +816,7 @@ the meaning of the keys in each hashref is:
 
 =back
 
-=head2 C<< ->mytrades >>
+=head2 C<mytrades>
 
     my $market_id = 68; #  CSC/BTC market
     my $limit = 200;
@@ -861,7 +860,7 @@ Does not include fees
 
 =back
 
-=head2 C<< ->allmytrades >>
+=head2 C<allmytrades>
 
     my $data = $cryp->allmytrades
         or die "Error: $cryp";
@@ -903,7 +902,7 @@ Does not include fees
 
 =back
 
-=head2 C<< ->myorders >>
+=head2 C<myorders>
 
     my $market_id = 68; #  CSC/BTC market
     my $data = $cryp->myorders( $market_id )
@@ -940,7 +939,7 @@ the meaning of the keys in each hashref is:
 
 =back
 
-=head2 C<< ->depth >>
+=head2 C<depth>
 
     my $market_id = 68; #  CSC/BTC market
     my $data = $cryp->depth( $market_id )
@@ -968,7 +967,7 @@ On success returns a data structure that looks something like this:
         ]
     };
 
-=head2 C<< ->allmyorders >>
+=head2 C<allmyorders>
 
     my $data = $cryp->allmyorders
         or die "Error: $cryp";
@@ -1005,7 +1004,7 @@ the meaning of the keys in each hashref is:
 
 =back
 
-=head2 C<< ->createorder >>
+=head2 C<createorder>
 
     my $order_id = $cryp->createorder(
         $marketid,   # Market ID for which you are creating an order for
@@ -1020,7 +1019,7 @@ B<On failure> returns C<undef> or an empty list,
 depending on the context, and sets C<< ->error >> to the error message.
 B<On success> returns the order ID.
 
-=head2 C<< ->cancelorder >>
+=head2 C<cancelorder>
 
     $cryp->cancelorder( $order_id )
         or die "Error: $cryp";
@@ -1031,7 +1030,7 @@ B<On failure> returns C<undef> or an empty list,
 depending on the context, and sets C<< ->error >> to the error message.
 B<On success> returns a true value.
 
-=head2 C<< ->cancelmarketorders >>
+=head2 C<cancelmarketorders>
 
     my $market_id = 68; #  CSC/BTC market
     my $data = $cryp->cancelmarketorders( $market_id )
@@ -1048,7 +1047,7 @@ the returned data structure and submit it to me via a bug report,
 it would be appreciated.> It is likely the return is a hashref with
 a single key C<return> whose value is an arrayref.
 
-=head2 C<< ->cancelallorders >>
+=head2 C<cancelallorders>
 
     my $data = $cryp->cancelallorders
         or die "Error: $cryp";
@@ -1064,7 +1063,7 @@ the returned data structure and submit it to me via a bug report,
 it would be appreciated.> It is likely the return is a hashref with
 a single key C<return> whose value is an arrayref.
 
-=head2 C<< ->calculatefees >>
+=head2 C<calculatefees>
 
     my $data = $cryp->calculatefees(
         $ordertype,  # Order type you are calculating for (Buy/Sell)
@@ -1094,7 +1093,7 @@ the meaning of the keys in the hashref is:
 
 =back
 
-=head2 C<< ->generatenewaddress >>
+=head2 C<generatenewaddress>
 
     my $address = $cryp->generatenewaddress(
         3,      # Currency ID for the coin you want to

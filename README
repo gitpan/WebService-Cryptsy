@@ -51,7 +51,7 @@ GETTING API KEY
     confusing error message.
 
 CONSTRUCTOR
-  "->new"
+  "new"
         my $cryp = WebService::Cryptsy->new(
             public_key  => 'YOUR PUBLIC  KEY',
             private_key => 'YOUR PRIVATE KEY',
@@ -94,7 +94,7 @@ CONSTRUCTOR
     Default: 60
 
 MODULE METHODS / OVERLOADS
-  "->error"
+  "error"
         # these two are equivalent
         my $data = $cryp->marketdata
             or die "Error: $cryp";
@@ -109,7 +109,7 @@ MODULE METHODS / OVERLOADS
     thus you can simply interpolate the object in a string to get the error
     message.
 
-  "->timeout"
+  "timeout"
         printf "Current API request timeout is %d\n", $cryp->timeout;
 
         $cryp->timeout( 30 );
@@ -127,7 +127,7 @@ GENERAL CONVENTION FOR API METHODS
 PUBLIC API METHODS
     These methods do not require API keys.
 
-  "->marketdata"
+  "marketdata"
         my $data = $cryp->marketdata
             or die "Error: $cryp";
 
@@ -175,7 +175,7 @@ PUBLIC API METHODS
             },
         };
 
-  "->marketdatav2"
+  "marketdatav2"
         my $data = $cryp->marketdatav2
             or die "Error: $cryp";
 
@@ -184,20 +184,46 @@ PUBLIC API METHODS
     and sets "->error" to the error message. On success returns a data
     structure that looks something like this:
 
-    { 'markets' => { 'IFC/LTC' => { 'primaryname' => 'InfiniteCoin',
-    'secondaryname' => 'LiteCoin', 'label' => 'IFC/LTC', 'volume' =>
-    '413934622.38106910', 'lasttradeprice' => '0.00000289', 'marketid' =>
-    '60', 'primarycode' => 'IFC', 'secondarycode' => 'LTC', 'lasttradetime'
-    => '2013-12-26 01:37:09', 'sellorders' => [ { 'quantity' =>
-    '0.00000000', 'price' => '0.00000286', 'total' => '8.64783388' }, ],
-    'buyorders' => [ { 'quantity' => '0.00000000', 'price' => '0.00000293',
-    'total' => '2.15336758', }, ], 'recenttrades' => [ { 'time' =>
-    '2013-12-26 01:40:36', 'quantity' => '10000.00000000', 'price' =>
-    '0.00000292', 'id' => '9626105', 'total' => '0.02920000', }, ], }, }
+        {
+            'markets' => {
+                'IFC/LTC' => {
+                    'primaryname' => 'InfiniteCoin',
+                    'secondaryname' => 'LiteCoin',
+                    'label' => 'IFC/LTC',
+                    'volume' => '413934622.38106910',
+                    'lasttradeprice' => '0.00000289',
+                    'marketid' => '60',
+                    'primarycode' => 'IFC',
+                    'secondarycode' => 'LTC',
+                    'lasttradetime' => '2013-12-26 01:37:09',
+                    'sellorders' => [
+                        {
+                            'quantity' => '0.00000000',
+                            'price' => '0.00000286',
+                            'total' => '8.64783388'
+                        },
+                    ],
+                    'buyorders' => [
+                        {
+                            'quantity' => '0.00000000',
+                            'price' => '0.00000293',
+                            'total' => '2.15336758',
+                        },
+                    ],
+                    'recenttrades' => [
+                        {
+                            'time' => '2013-12-26 01:40:36',
+                            'quantity' => '10000.00000000',
+                            'price' => '0.00000292',
+                            'id' => '9626105',
+                            'total' => '0.02920000',
+                        },
+                    ],
+                },
+            }
+        };
 
-    };
-
-  "->singlemarketdata"
+  "singlemarketdata"
         my $market_id = 60; #  IFC/LTC market
         my $data = $cryp->singlemarketdata( $market_id )
             or die "Error: $cryp";
@@ -246,7 +272,7 @@ PUBLIC API METHODS
             }
         };
 
-  "->orderdata"
+  "orderdata"
         my $data = $cryp->orderdata
             or die "Error: $cryp";
 
@@ -280,7 +306,7 @@ PUBLIC API METHODS
             },
         };
 
-  "->singleorderdata"
+  "singleorderdata"
         my $market_id = 68; #  CSC/BTC market
         my $data = $cryp->singleorderdata( $market_id )
             or die "Error: $cryp";
@@ -316,7 +342,7 @@ PUBLIC API METHODS
         };
 
 AUTHENTICATED API METHODS
-  "->getinfo"
+  "getinfo"
         my $data = $cryp->getinfo
             or die "Error: $cryp";
 
@@ -356,7 +382,7 @@ AUTHENTICATED API METHODS
 
     *   "openordercount" Count of open orders on your account
 
-  "->getmarkets"
+  "getmarkets"
         my $data = $cryp->getmarkets
             or die "Error: $cryp";
 
@@ -409,7 +435,7 @@ AUTHENTICATED API METHODS
 
     *   "created" Datetime (EST) the market was created
 
-  "->mytransactions"
+  "mytransactions"
         my $data = $cryp->mytransactions
             or die "Error: $cryp";
 
@@ -442,7 +468,7 @@ AUTHENTICATED API METHODS
 
     *   "trxid" Network Transaction ID (If available)
 
-  "->markettrades"
+  "markettrades"
         my $market_id = 68; #  CSC/BTC market
         my $data = $cryp->markettrades( $market_id )
             or die "Error: $cryp";
@@ -479,7 +505,7 @@ AUTHENTICATED API METHODS
 
     *   "initiate_ordertype" The type of order which initiated this trade
 
-  "->marketorders"
+  "marketorders"
         my $market_id = 68; #  CSC/BTC market
         my $data = $cryp->marketorders( $market_id )
             or die "Error: $cryp";
@@ -519,7 +545,7 @@ AUTHENTICATED API METHODS
 
     *   "total" Total value of order (price * quantity)
 
-  "->mytrades"
+  "mytrades"
         my $market_id = 68; #  CSC/BTC market
         my $limit = 200;
         my $data = $cryp->mytrades( $market_id, $limit )
@@ -556,7 +582,7 @@ AUTHENTICATED API METHODS
 
     *   "order_id" Original order id this trade was executed against
 
-  "->allmytrades"
+  "allmytrades"
         my $data = $cryp->allmytrades
             or die "Error: $cryp";
 
@@ -591,7 +617,7 @@ AUTHENTICATED API METHODS
 
     *   "order_id" Original order id this trade was executed against
 
-  "->myorders"
+  "myorders"
         my $market_id = 68; #  CSC/BTC market
         my $data = $cryp->myorders( $market_id )
             or die "Error: $cryp";
@@ -621,7 +647,7 @@ AUTHENTICATED API METHODS
 
     *   "orig_quantity" Original Total Order Quantity
 
-  "->depth"
+  "depth"
         my $market_id = 68; #  CSC/BTC market
         my $data = $cryp->depth( $market_id )
             or die "Error: $cryp";
@@ -647,7 +673,7 @@ AUTHENTICATED API METHODS
             ]
         };
 
-  "->allmyorders"
+  "allmyorders"
         my $data = $cryp->allmyorders
             or die "Error: $cryp";
 
@@ -677,7 +703,7 @@ AUTHENTICATED API METHODS
 
     *   "orig_quantity" Original Total Order Quantity
 
-  "->createorder"
+  "createorder"
         my $order_id = $cryp->createorder(
             $marketid,   # Market ID for which you are creating an order for
             $ordertype,  # Order type you are creating (Buy/Sell)
@@ -690,7 +716,7 @@ AUTHENTICATED API METHODS
     empty list, depending on the context, and sets "->error" to the error
     message. On success returns the order ID.
 
-  "->cancelorder"
+  "cancelorder"
         $cryp->cancelorder( $order_id )
             or die "Error: $cryp";
 
@@ -699,7 +725,7 @@ AUTHENTICATED API METHODS
     on the context, and sets "->error" to the error message. On success
     returns a true value.
 
-  "->cancelmarketorders"
+  "cancelmarketorders"
         my $market_id = 68; #  CSC/BTC market
         my $data = $cryp->cancelmarketorders( $market_id )
             or die "Error: $cryp";
@@ -714,7 +740,7 @@ AUTHENTICATED API METHODS
     the return is a hashref with a single key "return" whose value is an
     arrayref.
 
-  "->cancelallorders"
+  "cancelallorders"
         my $data = $cryp->cancelallorders
             or die "Error: $cryp";
 
@@ -727,7 +753,7 @@ AUTHENTICATED API METHODS
     via a bug report, it would be appreciated. It is likely the return is a
     hashref with a single key "return" whose value is an arrayref.
 
-  "->calculatefees"
+  "calculatefees"
         my $data = $cryp->calculatefees(
             $ordertype,  # Order type you are calculating for (Buy/Sell)
             $quantity,   # Amount of units you are buying/selling
@@ -751,7 +777,7 @@ AUTHENTICATED API METHODS
 
     *   "net" The net total with fees
 
-  "->generatenewaddress"
+  "generatenewaddress"
         my $address = $cryp->generatenewaddress(
             3,      # Currency ID for the coin you want to
                     # generate a new address for (ie. 3 = BitCoin)

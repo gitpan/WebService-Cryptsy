@@ -1,5 +1,9 @@
 Revision history for WebService-Cryptsy
 
+1.002   2013-12-26
+        - Added examples/api.pl that was left out from the previous version
+        - Fixed a minor POD issue
+
 1.001   2013-12-26
-        First version, released on an unsuspecting world.
+        - First version, released on an unsuspecting world.
 
