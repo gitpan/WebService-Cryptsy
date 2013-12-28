@@ -43,7 +43,7 @@
    "provides" : {
       "WebService::Cryptsy" : {
          "file" : "lib/WebService/Cryptsy.pm",
-         "version" : "1.002"
+         "version" : "1.003"
       }
    },
    "release_status" : "stable",
@@ -52,5 +52,5 @@
          "http://www.perlfoundation.org/artistic_license_2_0"
       ]
    },
-   "version" : "1.002"
+   "version" : "1.003"
 }

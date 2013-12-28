@@ -11,7 +11,7 @@ use constant API_POST_URL => 'https://www.cryptsy.com/api';
 use constant API_GET_URL  => 'http://pubapi.cryptsy.com/api.php';
 use overload '""' => sub { shift->error };
 
-our $VERSION = '1.002';
+our $VERSION = '1.003';
 
 
 has public_key  => ( is => 'ro', );
@@ -129,7 +129,10 @@ sub generatenewaddress {
 sub _decode {
     my ( $self, $json, $method ) = @_;
 
-    return unless $json;
+    unless ( $json ) {
+        $self->error('Network error: got no data');
+        return
+    }
 
     $self->error( undef );
 
