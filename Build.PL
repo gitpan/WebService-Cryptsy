@@ -20,10 +20,11 @@ my $builder = Module::Build->new(
     },
     requires => {
         'Carp'                  => 0,
-        'Moo'                   => 0,
+        'Moo'                   => 1.003001,
         'URI'                   => 0,
         'JSON::MaybeXS'         => 0,
         'LWP::UserAgent'        => 0,
+        'LWP::Protocol::https' => 6.02,
         'Digest::SHA'           => 0,
         'HTTP::Request::Common' => 0,
         'constant'              => 0,

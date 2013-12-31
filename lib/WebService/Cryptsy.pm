@@ -11,7 +11,7 @@ use constant API_POST_URL => 'https://www.cryptsy.com/api';
 use constant API_GET_URL  => 'http://pubapi.cryptsy.com/api.php';
 use overload '""' => sub { shift->error };
 
-our $VERSION = '1.003';
+our $VERSION = '1.004';
 
 
 has public_key  => ( is => 'ro', );
@@ -143,7 +143,7 @@ sub _decode {
     }
 
     unless ( $decoded and $decoded->{success} ) {
-        $self->error( $decoded
+        $self->error( $decoded && $decoded->{error}
             ? $decoded->{error}
             : 'Unknown JSON parsing error'
         );
@@ -162,6 +162,11 @@ sub _decode {
 
     if ( $method eq 'cancelorder' ) {
         $decoded->{return} = 1;
+    }
+
+    unless ( $decoded->{return} ) {
+        $self->error('Return given by Cryptsy is empty');
+        return;
     }
 
     return $decoded->{return};
