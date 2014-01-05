@@ -26,19 +26,25 @@ if ( $data ) {
     cmp_deeply(
         $data,
         {
-            'sellorders' => array_each(
-                {
-                    'sellprice' => re('^[-+.\d]+$'),
-                    'quantity' => re('^[-+.\d]+$'),
-                    'total' => re('^[-+.\d]+$'),
-                },
+            'sellorders' => any(
+                array_each(
+                    {
+                        'sellprice' => re('^[-+.\d]+$'),
+                        'quantity' => re('^[-+.\d]+$'),
+                        'total' => re('^[-+.\d]+$'),
+                    },
+                ),
+                undef,
             ),
-            'buyorders' => array_each(
-                {
-                    'quantity' => re('^[-+.\d]+$'),
-                    'buyprice' => re('^[-+.\d]+$'),
-                    'total' => re('^[-+.\d]+$'),
-                },
+            'buyorders' => any(
+                array_each(
+                    {
+                        'quantity' => re('^[-+.\d]+$'),
+                        'buyprice' => re('^[-+.\d]+$'),
+                        'total' => re('^[-+.\d]+$'),
+                    },
+                ),
+                undef,
             ),
         },
         '->marketorders returned an expected arrayref'

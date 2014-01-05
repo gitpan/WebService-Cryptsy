@@ -38,21 +38,27 @@ if ( $data ) {
                         ),
                         undef,
                     ),
-                    'sellorders' => array_each(
-                        {
-                            'quantity' => re('^[-+.\d]+$'),
-                            'price' => re('^[-+.\d]+$'),
-                            'total' => re('^[-+.\d]+$'),
-                        },
+                    'sellorders' => any(
+                        array_each(
+                            {
+                                'quantity' => re('^[-+.\d]+$'),
+                                'price' => re('^[-+.\d]+$'),
+                                'total' => re('^[-+.\d]+$'),
+                            },
+                        ),
+                        undef,
                     ),
-                    'recenttrades' => array_each(
-                        {
-                            'quantity' => re('^[-+.\d]+$'),
-                            'price' => re('^[-+.\d]+$'),
-                            'total' => re('^[-+.\d]+$'),
-                            'id' => re('.'),
-                            'time' => re('.'),
-                        },
+                    'recenttrades' => any(
+                        array_each(
+                            {
+                                'quantity' => re('^[-+.\d]+$'),
+                                'price' => re('^[-+.\d]+$'),
+                                'total' => re('^[-+.\d]+$'),
+                                'id' => re('.'),
+                                'time' => re('.'),
+                            },
+                        ),
+                        undef,
                     ),
                 }
             ),

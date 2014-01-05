@@ -17,7 +17,7 @@ name: WebService-Cryptsy
 provides:
   WebService::Cryptsy:
     file: lib/WebService/Cryptsy.pm
-    version: 1.004
+    version: 1.005
 requires:
   Carp: 0
   Digest::SHA: 0
@@ -32,4 +32,4 @@ requires:
   perl: 5.006
 resources:
   license: http://www.perlfoundation.org/artistic_license_2_0
-version: 1.004
+version: 1.005

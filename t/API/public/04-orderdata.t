@@ -23,12 +23,15 @@ if ( $data ) {
                 'secondarycode' => re('.'),
                 'primarycode' => re('.'),
                 'label' => re('.'),
-                'sellorders' => array_each(
-                    {
-                        'quantity' => re('^[-+.\d]+$'),
-                        'price' => re('^[-+.\d]+$'),
-                        'total' => re('^[-+.\d]+$')
-                    },
+                'sellorders' => any(
+                    array_each(
+                        {
+                            'quantity' => re('^[-+.\d]+$'),
+                            'price' => re('^[-+.\d]+$'),
+                            'total' => re('^[-+.\d]+$'),
+                        },
+                    ),
+                    undef,
                 ),
                 'buyorders' => any(
                     array_each(

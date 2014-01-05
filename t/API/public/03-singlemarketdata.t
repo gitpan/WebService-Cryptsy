@@ -27,28 +27,37 @@ if ( $data ) {
                     'primarycode' => 'IFC',
                     'secondarycode' => 'LTC',
                     'lasttradetime' => re('.'),
-                    'sellorders' => array_each(
-                        {
-                            'quantity' => re('^[-+.\d]+$'),
-                            'price' => re('^[-+.\d]+$'),
-                            'total' => re('^[-+.\d]+$')
-                        },
+                    'sellorders' => any(
+                        array_each(
+                            {
+                                'quantity' => re('^[-+.\d]+$'),
+                                'price' => re('^[-+.\d]+$'),
+                                'total' => re('^[-+.\d]+$'),
+                            },
+                        ),
+                        undef,
                     ),
-                    'buyorders' => array_each(
-                        {
-                            'quantity' => re('^[-+.\d]+$'),
-                            'price' => re('^[-+.\d]+$'),
-                            'total' => re('^[-+.\d]+$'),
-                        },
+                    'buyorders' => any(
+                        array_each(
+                            {
+                                'quantity' => re('^[-+.\d]+$'),
+                                'price' => re('^[-+.\d]+$'),
+                                'total' => re('^[-+.\d]+$'),
+                            },
+                        ),
+                        undef,
                     ),
-                    'recenttrades' => array_each(
-                        {
-                            'time' => re('.'),
-                            'quantity' => re('^[-+.\d]+$'),
-                            'price' => re('^[-+.\d]+$'),
-                            'id' => re('^[-+.\d]+$'),
-                            'total' => re('^[-+.\d]+$'),
-                        },
+                    'recenttrades' => any(
+                        array_each(
+                            {
+                                'time' => re('.'),
+                                'quantity' => re('^[-+.\d]+$'),
+                                'price' => re('^[-+.\d]+$'),
+                                'id' => re('^[-+.\d]+$'),
+                                'total' => re('^[-+.\d]+$'),
+                            },
+                        ),
+                        undef,
                     ),
                 },
             ),

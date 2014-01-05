@@ -23,19 +23,25 @@ if ( $data ) {
                 'primarycode' => 'CSC',
                 'label' => re('.'),
                 'secondaryname' => 'BitCoin',
-                'buyorders' => array_each(
-                    {
-                        'quantity' => re('^[-+.\d]+$'),
-                        'price' => re('^[-+.\d]+$'),
-                        'total' => re('^[-+.\d]+$')
-                    },
+                'buyorders' => any(
+                    array_each(
+                        {
+                            'quantity' => re('^[-+.\d]+$'),
+                            'price' => re('^[-+.\d]+$'),
+                            'total' => re('^[-+.\d]+$'),
+                        },
+                    ),
+                    undef,
                 ),
-                'sellorders' => array_each(
-                    {
-                        'quantity' => re('^[-+.\d]+$'),
-                        'price' => re('^[-+.\d]+$'),
-                        'total' => re('^[-+.\d]+$')
-                    },
+                'sellorders' => any(
+                    array_each(
+                        {
+                            'quantity' => re('^[-+.\d]+$'),
+                            'price' => re('^[-+.\d]+$'),
+                            'total' => re('^[-+.\d]+$'),
+                        },
+                    ),
+                    undef,
                 ),
             }
         ),

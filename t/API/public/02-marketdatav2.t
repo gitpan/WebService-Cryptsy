@@ -27,12 +27,15 @@ if ( $data ) {
                     'primarycode' => re('.'),
                     'secondarycode' => re('.'),
                     'lasttradetime' => re('.'),
-                    'sellorders' => array_each(
-                        {
-                            'quantity' => re('^[-+.\d]+$'),
-                            'price' => re('^[-+.\d]+$'),
-                            'total' => re('^[-+.\d]+$')
-                        },
+                    'sellorders' => any(
+                        array_each(
+                            {
+                                'quantity' => re('^[-+.\d]+$'),
+                                'price' => re('^[-+.\d]+$'),
+                                'total' => re('^[-+.\d]+$'),
+                            },
+                        ),
+                        undef,
                     ),
                     'buyorders' => any(
                         array_each(
@@ -44,14 +47,17 @@ if ( $data ) {
                         ),
                         undef,
                     ),
-                    'recenttrades' => array_each(
-                        {
-                            'time' => re('.'),
-                            'quantity' => re('^[-+.\d]+$'),
-                            'price' => re('^[-+.\d]+$'),
-                            'id' => re('^[-+.\d]+$'),
-                            'total' => re('^[-+.\d]+$'),
-                        },
+                    'recenttrades' => any(
+                        array_each(
+                            {
+                                'time' => re('.'),
+                                'quantity' => re('^[-+.\d]+$'),
+                                'price' => re('^[-+.\d]+$'),
+                                'id' => re('^[-+.\d]+$'),
+                                'total' => re('^[-+.\d]+$'),
+                            },
+                        ),
+                        undef,
                     ),
                 },
             ),
