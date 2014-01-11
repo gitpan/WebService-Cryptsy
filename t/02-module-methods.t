@@ -22,7 +22,7 @@ my $cryp = WebService::Cryptsy->new(
 $cryp->createorder(
     68,
     'Sell',
-    '1',
+    '100',
     '199',
 );
 
@@ -37,4 +37,3 @@ is($cryp->timeout, 10, '->timeout returns expected value');
 $cryp->timeout(20);
 is($cryp->timeout, 20, '->timeout returns expected value, '
     . 'after setting a new value');
-

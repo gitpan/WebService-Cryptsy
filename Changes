@@ -1,5 +1,8 @@
 Revision history for WebService-Cryptsy
 
+1.005   2014-01-11
+        - Fixed a broken test
+
 1.005   2014-01-05
         - Improved the tests to handle some previously-unaccounted-for cases
 

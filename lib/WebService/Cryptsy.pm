@@ -11,7 +11,7 @@ use constant API_POST_URL => 'https://www.cryptsy.com/api';
 use constant API_GET_URL  => 'http://pubapi.cryptsy.com/api.php';
 use overload '""' => sub { shift->error };
 
-our $VERSION = '1.005';
+our $VERSION = '1.006';
 
 
 has public_key  => ( is => 'ro', );

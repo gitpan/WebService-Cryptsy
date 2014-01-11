@@ -27,7 +27,7 @@ my $cryp = WebService::Cryptsy->new(
 $cryp->createorder(
     68,
     'Sell',
-    '1',
+    '100',
     '199',
 );
 
