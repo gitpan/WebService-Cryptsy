@@ -26,17 +26,23 @@ if ( $data ) {
     cmp_deeply(
         $data,
         {
-            'buy' => array_each(
-                [
-                    re('^[-+.\d]+$'), # price
-                    re('^[-+.\d]+$'), # quantity
-                ],
+            'buy' => any(
+                array_each(
+                    [
+                        re('^[-+.\d]+$'), # price
+                        re('^[-+.\d]+$'), # quantity
+                    ],
+                ),
+                undef,
             ),
-            'sell' => array_each(
-                [
-                    re('^[-+.\d]+$'), # price
-                    re('^[-+.\d]+$'), # quantity
-                ],
+            'sell' => any(
+                array_each(
+                    [
+                        re('^[-+.\d]+$'), # price
+                        re('^[-+.\d]+$'), # quantity
+                    ],
+                ),
+                undef,
             ),
         },
         '->depth returned an expected hashref'
