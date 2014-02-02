@@ -1,5 +1,9 @@
 Revision history for WebService-Cryptsy
 
+1.008001   2014-02-01
+        - Updated Cryptsy's new private API URL
+        - Converted to dzil
+
 1.007   2014-01-17
         - Fixed a broken test
 

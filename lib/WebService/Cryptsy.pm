@@ -1,17 +1,18 @@
 package WebService::Cryptsy;
 
 use Moo;
+
+our $VERSION = '1.008001'; # VERSION
+
 use URI;
 use JSON::MaybeXS;
 use LWP::UserAgent;
 use Digest::SHA qw/hmac_sha512_hex/;
 use HTTP::Request::Common qw/POST/;
 
-use constant API_POST_URL => 'https://www.cryptsy.com/api';
+use constant API_POST_URL => 'https://api.cryptsy.com/api';
 use constant API_GET_URL  => 'http://pubapi.cryptsy.com/api.php';
 use overload '""' => sub { shift->error };
-
-our $VERSION = '1.007';
 
 
 has public_key  => ( is => 'ro', );
@@ -222,6 +223,8 @@ __END__
 
 =encoding utf8
 
+=for stopwords EST Orderbook buyorders com cryptsy sellorders tradeprice www www.cryptsy.com www.cryptsy.com.
+
 =head1 NAME
 
 WebService::Cryptsy - implementation of www.cryptsy.com API
@@ -239,6 +242,7 @@ WebService::Cryptsy - implementation of www.cryptsy.com API
     print Dumper( $cryp->getinfo      || $cryp->error ) . "\n";
     print Dumper( $cryp->marketdatav2 || $cryp->error ) . "\n";
 
+    my ( $currency_id, $currency_code ) = ( 3, 'BTC' );
     my $generated_address
     = $cryp->generatenewaddress( $currency_id, $currency_code )
         or die "Error: " . $cryp->error;
@@ -743,7 +747,7 @@ or Withdrawal was sent
         or die "Error: $cryp";
 
 I<Outputs: Array of last 1000 Trades for this Market,
-in Date Decending Order>.
+in Date Descending Order>.
 B<Takes> one B<mandatory> argument, which is the market ID.
 B<On failure> returns C<undef> or an empty list,
 depending on the context, and sets C<< ->error >> to the error message.
@@ -831,7 +835,7 @@ the meaning of the keys in each hashref is:
     my $data = $cryp->mytrades( $market_id, $limit )
         or die "Error: $cryp";
 
-I<Outputs: Array your Trades for this Market, in Date Decending Order.>
+I<Outputs: Array your Trades for this Market, in Date Descending Order.>
 B<Takes> one B<mandatory> argument, which is the market ID, and
 one B<optional> argument, which is the limit of the number of results
 (B<defaults to> C<200>).
@@ -873,7 +877,7 @@ Does not include fees
     my $data = $cryp->allmytrades
         or die "Error: $cryp";
 
-I<Outputs: Array your Trades for all Markets, in Date Decending Order>.
+I<Outputs: Array your Trades for all Markets, in Date Descending Order>.
 B<Takes> no arguments.
 B<On failure> returns C<undef> or an empty list,
 depending on the context, and sets C<< ->error >> to the error message.
@@ -1128,89 +1132,28 @@ On success returns a data structure that looks something like this:
         'address' => '16zJ1sR9RBEsWsAzy8uZYM2Lr65691kwqD'
     };
 
-=head1 AUTHOR
+=head1 REPOSITORY
 
-Zoffix Znet, C<< <zoffix at cpan.org> >>
+Fork this module on GitHub:
+L<https://github.com/zoffixznet/WebService-Cryptsy>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-webservice-cryptsy at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WebService-Cryptsy>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+To report bugs or request features, please use
+L<https://github.com/zoffixznet/WebService-Cryptsy/issues>
 
-=head1 SUPPORT
+If you can't access GitHub, you can email your request
+to C<bug-WebService-Cryptsy at rt.cpan.org>
 
-You can find documentation for this module with the perldoc command.
+=head1 AUTHOR
 
-    perldoc WebService::Cryptsy
+Zoffix Znet <zoffix at cpan.org>
+(L<http://zoffix.com/>, L<http://haslayout.net/>)
 
-You can also look for information at:
+=head1 LICENSE
 
-=over 4
-
-=item * RT: CPAN's request tracker (report bugs here)
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=WebService-Cryptsy>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/WebService-Cryptsy>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/WebService-Cryptsy>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/WebService-Cryptsy/>
-
-=back
-
-
-=head1 ACKNOWLEDGEMENTS
-
-
-=head1 LICENSE AND COPYRIGHT
-
-Copyright 2013 Zoffix Znet.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of the the Artistic License (2.0). You may obtain a
-copy of the full license at:
-
-L<http://www.perlfoundation.org/artistic_license_2_0>
-
-Any use, modification, and distribution of the Standard or Modified
-Versions is governed by this Artistic License. By using, modifying or
-distributing the Package, you accept this license. Do not use, modify,
-or distribute the Package, if you do not accept this license.
-
-If your Modified Version has been derived from a Modified Version made
-by someone other than you, you are nevertheless required to ensure that
-your Modified Version complies with the requirements of this license.
-
-This license does not grant you the right to use any trademark, service
-mark, tradename, or logo of the Copyright Holder.
-
-This license includes the non-exclusive, worldwide, free-of-charge
-patent license to make, have made, use, offer to sell, sell, import and
-otherwise transfer the Package with respect to any patent claims
-licensable by the Copyright Holder that are necessarily infringed by the
-Package. If you institute patent litigation (including a cross-claim or
-counterclaim) against any party alleging that the Package constitutes
-direct or contributory patent infringement, then this Artistic License
-to you shall terminate on the date that such litigation is filed.
-
-Disclaimer of Warranty: THE PACKAGE IS PROVIDED BY THE COPYRIGHT HOLDER
-AND CONTRIBUTORS "AS IS' AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES.
-THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED TO THE EXTENT PERMITTED BY
-YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR
-CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
-CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
-EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
+You can use and distribute this module under the same terms as Perl itself.
+See the C<LICENSE> file included in this distribution for complete
+details.
 
 =cut
-
-

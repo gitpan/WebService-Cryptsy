@@ -2,6 +2,9 @@
 
 use strict;
 use warnings;
+
+# VERSION
+
 use WebService::Cryptsy;
 use lib qw(lib  ../lib);
 

@@ -31,7 +31,7 @@ my $data = $cryp->getinfo;
 if ( $data ) {
     cmp_deeply(
         $data,
-        {
+        subhashof({
             'openordercount' => re('^\d+$'),
             'servertimestamp' => re('^\d+$'),
             'servertimezone' => re('.'),
@@ -42,7 +42,7 @@ if ( $data ) {
             'balances_hold' => hash_each(
                 re('^[-+.\d]+$'),
             ),
-        },
+        }),
         '->getinfo returned an expected arrayref'
     );
 }
