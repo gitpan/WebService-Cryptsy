@@ -24,11 +24,12 @@ name: WebService-Cryptsy
 provides:
   WebService::Cryptsy:
     file: lib/WebService/Cryptsy.pm
-    version: 1.008001
+    version: 1.008002
 requires:
   Digest::SHA: 0
   HTTP::Request::Common: 0
   JSON::MaybeXS: 0
+  LWP::Protocol::https: 0
   LWP::UserAgent: 0
   Moo: 0
   URI: 0
@@ -39,7 +40,7 @@ resources:
   bugtracker: https://github.com/zoffixznet/webservice-cryptsy/issues
   homepage: http://metacpan.org/release/WebService-Cryptsy
   repository: git://github.com/zoffixznet/webservice-cryptsy.git
-version: 1.008001
+version: 1.008002
 x_Dist_Zilla:
   perl:
     version: 5.014002
@@ -135,7 +136,7 @@ x_Dist_Zilla:
           inherit_version: 1
           meta_noindex: 1
       name: '@Author::ZOFFIX/MetaProvides::Package'
-      version: 1.15000003
+      version: 2.000000
     -
       class: Dist::Zilla::Plugin::GithubMeta
       name: '@Author::ZOFFIX/GithubMeta'
@@ -171,10 +172,6 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Test::Version
       name: '@Author::ZOFFIX/Test::Version'
       version: 0.002004
-    -
-      class: Dist::Zilla::Plugin::Test::Kwalitee::Extra
-      name: '@Author::ZOFFIX/Test::Kwalitee::Extra'
-      version: v0.2.0
     -
       class: Dist::Zilla::Plugin::MetaTests
       name: '@Author::ZOFFIX/MetaTests'
@@ -246,6 +243,10 @@ x_Dist_Zilla:
       name: '@Author::ZOFFIX/Test::MinimumVersion'
       version: 2.000005
     -
+      class: Dist::Zilla::Plugin::Git::NextVersion
+      name: '@Author::ZOFFIX/Git::NextVersion'
+      version: 2.020
+    -
       class: Dist::Zilla::Plugin::AutoMetaResources
       name: '@Author::ZOFFIX/AutoMetaResources'
       version: 1.20
@@ -286,9 +287,17 @@ x_Dist_Zilla:
       name: '@Author::ZOFFIX/UploadToCPAN'
       version: 5.012
     -
-      class: Dist::Zilla::Plugin::Git::NextVersion
-      name: Git::NextVersion
-      version: 2.020
+      class: Dist::Zilla::Plugin::Test::Kwalitee
+      name: Test::Kwalitee
+      version: 2.07
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: runtime
+          type: requires
+      name: Prereqs
+      version: 5.012
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'

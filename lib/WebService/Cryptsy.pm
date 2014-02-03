@@ -2,7 +2,7 @@ package WebService::Cryptsy;
 
 use Moo;
 
-our $VERSION = '1.008001'; # VERSION
+our $VERSION = '1.008002'; # VERSION
 
 use URI;
 use JSON::MaybeXS;

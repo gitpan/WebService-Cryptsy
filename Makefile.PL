@@ -24,6 +24,7 @@ my %WriteMakefileArgs = (
     "Digest::SHA" => 0,
     "HTTP::Request::Common" => 0,
     "JSON::MaybeXS" => 0,
+    "LWP::Protocol::https" => 0,
     "LWP::UserAgent" => 0,
     "Moo" => 0,
     "URI" => 0,
@@ -40,7 +41,7 @@ my %WriteMakefileArgs = (
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "1.008001",
+  "VERSION" => "1.008002",
   "test" => {
     "TESTS" => "t/*.t t/API/authenticated/*.t t/API/public/*.t"
   }
@@ -55,6 +56,7 @@ my %FallbackPrereqs = (
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
   "JSON::MaybeXS" => 0,
+  "LWP::Protocol::https" => 0,
   "LWP::UserAgent" => 0,
   "Moo" => 0,
   "Test::Deep" => 0,
