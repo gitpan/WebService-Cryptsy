@@ -24,14 +24,14 @@ name: WebService-Cryptsy
 provides:
   WebService::Cryptsy:
     file: lib/WebService/Cryptsy.pm
-    version: 1.008002
+    version: 1.008003
 requires:
   Digest::SHA: 0
   HTTP::Request::Common: 0
   JSON::MaybeXS: 0
   LWP::Protocol::https: 0
   LWP::UserAgent: 0
-  Moo: 0
+  Moo: 1.004002
   URI: 0
   constant: 0
   overload: 0
@@ -40,7 +40,7 @@ resources:
   bugtracker: https://github.com/zoffixznet/webservice-cryptsy/issues
   homepage: http://metacpan.org/release/WebService-Cryptsy
   repository: git://github.com/zoffixznet/webservice-cryptsy.git
-version: 1.008002
+version: 1.008003
 x_Dist_Zilla:
   perl:
     version: 5.014002
