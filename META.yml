@@ -24,7 +24,7 @@ name: WebService-Cryptsy
 provides:
   WebService::Cryptsy:
     file: lib/WebService/Cryptsy.pm
-    version: 1.008004
+    version: 1.008005
 requires:
   Digest::SHA: 0
   HTTP::Request::Common: 0
@@ -40,7 +40,7 @@ resources:
   bugtracker: https://github.com/zoffixznet/webservice-cryptsy/issues
   homepage: http://metacpan.org/release/WebService-Cryptsy
   repository: git://github.com/zoffixznet/webservice-cryptsy.git
-version: 1.008004
+version: 1.008005
 x_Dist_Zilla:
   perl:
     version: 5.014002
@@ -69,7 +69,7 @@ x_Dist_Zilla:
             - IPC::Open3
             - File::Copy
       name: '@Author::ZOFFIX/PromptIfStale'
-      version: 0.024
+      version: 0.027
     -
       class: Dist::Zilla::Plugin::GatherDir
       name: '@Author::ZOFFIX/GatherDir'
@@ -143,7 +143,7 @@ x_Dist_Zilla:
           inherit_version: 1
           meta_noindex: 1
       name: '@Author::ZOFFIX/MetaProvides::Package'
-      version: 2.001001
+      version: 2.001002
     -
       class: Dist::Zilla::Plugin::GithubMeta
       name: '@Author::ZOFFIX/GithubMeta'
@@ -155,7 +155,7 @@ x_Dist_Zilla:
     -
       class: Dist::Zilla::Plugin::ReadmeAnyFromPod
       name: '@Author::ZOFFIX/ReadmeAnyFromPod'
-      version: 0.142250
+      version: 0.142470
     -
       class: Dist::Zilla::Plugin::Test::Compile
       config:
@@ -274,7 +274,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: '.'
       name: '@Author::ZOFFIX/Git::NextVersion'
-      version: 2.023
+      version: 2.024
     -
       class: Dist::Zilla::Plugin::AutoMetaResources
       name: '@Author::ZOFFIX/AutoMetaResources'
@@ -309,7 +309,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: '.'
       name: '@Author::ZOFFIX/Git::Check'
-      version: 2.023
+      version: 2.024
     -
       class: Dist::Zilla::Plugin::Git::Commit
       config:
@@ -326,21 +326,21 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: '.'
       name: '@Author::ZOFFIX/Git::Commit'
-      version: 2.023
+      version: 2.024
     -
       class: Dist::Zilla::Plugin::Git::Tag
       config:
         Dist::Zilla::Plugin::Git::Tag:
           branch: ~
           signed: 0
-          tag: v1.008004
+          tag: v1.008005
           tag_format: v%v
           tag_message: v%v
           time_zone: local
         Dist::Zilla::Role::Git::Repo:
           repo_root: '.'
       name: '@Author::ZOFFIX/Git::Tag'
-      version: 2.023
+      version: 2.024
     -
       class: Dist::Zilla::Plugin::Git::Push
       config:
@@ -351,7 +351,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::Git::Repo:
           repo_root: '.'
       name: '@Author::ZOFFIX/Git::Push'
-      version: 2.023
+      version: 2.024
     -
       class: Dist::Zilla::Plugin::UploadToCPAN
       name: '@Author::ZOFFIX/UploadToCPAN'
